@@ -4,14 +4,14 @@
 #include "math.h"
 
 
- struct BNode {
-   int data;
-   struct BNode *left, *right;
+ struct BNode { // creating the template for the BST
+   int data; // value in node
+   struct BNode *left, *right; // pointer to the next node
  };
 
-  struct BNode * newNode(int data){
-    struct BNode * node = (struct BNode*)malloc(sizeOf(struct BNode));
-    node->data = data;
+  struct BNode * newNode(int data){ // function to create a new node in the BST
+    struct BNode * node = (struct BNode*)malloc(sizeof(struct BNode));  //creating the nodes memory 
+    node->data = data; //setting data
     node->left = node->right = NULL;
     return(node);
   }
