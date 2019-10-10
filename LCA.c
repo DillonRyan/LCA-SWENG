@@ -1,3 +1,8 @@
+/*
+CODE NOT USED DUE TO INABILITY OF TESTING code
+
+
+
   #include "stdio.h"
   #include "stdlib.h"
   #include "string.h"
@@ -53,6 +58,7 @@
       printf("LCA of %d and %d is %d \n", n1, n2, t->data);
 
       getchar();
-    /* code */
+  
     return 0;
   }
+  */
