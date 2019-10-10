@@ -1,6 +1,6 @@
 # LCA-SWENG
 Repo for Software engineering Lowest common ancestor problem
-For this project I plan on using C as my programming language and Atom as my development environment
+For this project i started off writing my program in C and using atom as my IDE, i ran into trouble though when i started trying to write tests for my code. It proved troublesome and there was very little resources in finding ways of doing it. This led me to changing my language to Java and using Eclipse as my IDE
 
 In a BST like the one shown below the LCA can be calculated by find the lowest node that is common to both nodes
 
