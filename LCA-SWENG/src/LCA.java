@@ -26,7 +26,6 @@ public class LCA {
         }
 
         private int findLCAInternal(Node root, int n1, int n2) {
-
             if (!findPath(root, n1, path1) || !findPath(root, n2, path2)) {
                 return -1;
             }
@@ -36,7 +35,6 @@ public class LCA {
                 if (!path1.get(i).equals(path2.get(i)))
                     break;
             }
-
             return path1.get(i - 1);
         }
 
