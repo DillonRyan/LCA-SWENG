@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class DAG {
 	private int Vertices;
@@ -81,11 +83,88 @@ public class DAG {
 
 	    public void addEdge(ArrayList<Integer>[] adj, int v, int w) {
 	        ArrayList<Integer> list = adj[v];
-	        if(!list.contains(w)); {
 	            list.add(w);
 	            Edge++;
+	    }
+
+
+	public boolean hasCycle() {
+
+        return hasCycle;
+    }
+
+	 public void findCycle(int v) {
+
+	        marked[v] = true;
+	        stack[v] = true;
+
+	        for (int w : adj(v)) {
+	            if(!marked[w]) {
+	                findCycle(w);
+	            } else if (stack[w]) {
+	                hasCycle = true;
+	                return;
+	            }
 	        }
 
+	        stack[v] = false;
+	    }
+
+
+	 public ArrayList<Integer> findLCA(int vertice1, int vertice2) {
+
+	        ArrayList<Integer> LCA = new ArrayList<>();
+	        Queue<Integer> level = new LinkedList<>();
+	        Queue<Integer> followingLevel = new LinkedList<>();
+	        if (vertice1 == vertice2) {
+	        	LCA.add(vertice1);
+	            return LCA;
+	        }
+	        boolean[] vertices1Ancestors = new boolean[adj.length];
+	        ArrayList<Integer>[] table = reverse(adj);
+	        Arrays.fill(vertices1Ancestors, false);
+
+	        vertices1Ancestors[vertice1] = true;
+	        for(int v : table[vertice1]) {
+	            markAncestors(table, vertices1Ancestors, v);
+	        }
+	        for(int v : table[vertice2]) {
+	            level.add(v);
+	        }
+
+	        while(!level.isEmpty()) {
+	                int vertices = level.remove();
+	                if(vertices1Ancestors[vertices]) {
+	                	LCA.add(vertices);
+	                }
+	                if(LCA.isEmpty()) {
+	                    for (int w : table[vertices]) {
+	                    	followingLevel.add(w);
+	                    }
+	                }
+
+	            level = followingLevel;
+	            followingLevel = new LinkedList<>();
+	        }
+	        return LCA;
+	    }
+
+	    public void markAncestors(ArrayList<Integer>[] parentTable, boolean[] vertice1Ancestors, int vertices) {
+	        vertice1Ancestors[vertices] = true;
+	        for(int vertice : parentTable[vertices]) {
+	            markAncestors(parentTable, vertice1Ancestors, vertice);
+	        }
+	    }
+	    public ArrayList<Integer>[] reverse(ArrayList<Integer>[] adj) {
+	        ArrayList<Integer>[] reverse = (ArrayList<Integer>[]) new ArrayList[adj.length];
+	        for(int i = 0; i < reverse.length; i++) {
+	            reverse[i] = new ArrayList<>();
+	        }
+	        for(int vertice = 0; vertice < adj.length; vertice++) {
+	            for(int w : adj[vertice]) {
+	                addEdge(reverse, w, vertice);
+	            }
+	        }
+	        return reverse;
 	    }
 }
-	  
