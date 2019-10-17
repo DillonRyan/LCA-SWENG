@@ -65,7 +65,7 @@ import org.junit.Test;
 
 			 @Test
 			    public void testLowestCommonAncestor() {
-/*									10
+/*									  10
  * 								   /  \
  * 								  /    \
  * 								 /      \
